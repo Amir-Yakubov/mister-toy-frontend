@@ -1,6 +1,3 @@
-// const { useEffect } = React
-// const { useSelector, useDispatch } = ReactRedux
-// const { Link } = ReactRouterDOM
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -11,6 +8,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { loadToys, removeToy, saveToy } from '../store/toy.action.js'
 import { ADD_TO_CART } from '../store/toy.reducer.js'
 import { useEffect } from 'react'
+
 import { PopupMenu } from '../cmps/popup-menu.jsx'
 
 export function ToyIndex() {
@@ -18,9 +16,6 @@ export function ToyIndex() {
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const isLoading = useSelector((storeState) => storeState.toyModule.isLoading)
     const shoppingCart = useSelector((storeState) => storeState.toyModule.shoppingCart)
-    // const [toys, setToys] = useState([])
-    // const [cart, setCart] = useState([])
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -30,7 +25,7 @@ export function ToyIndex() {
     function onLoadToys(filterBy) {
         loadToys(filterBy)
             .then(() => {
-                // showSuccessMsg('Toys loaded')
+                showSuccessMsg('Toys loaded')
             })
             .catch(err => {
                 showErrorMsg('Cannot load toys')
@@ -86,13 +81,13 @@ export function ToyIndex() {
     return <section>
         <h3>Toys App</h3>
         <main>
-            <PopupMenu top={<h2>Popup in Toy Index</h2>}>
+            {/* <PopupMenu top={<h2>Popup in Toy Index</h2>}>
                 <Text/>
                 <Text/>
                 <Text/>
-            </PopupMenu>
+            </PopupMenu> */}
             <Link to={`/toy/edit`}>Add Toy</Link>
-            <button onClick={onAddToy}>Add random Toy ⛐</button>
+            <button onClick={onAddToy}>Add random Toy</button>
 
             <ToyFilter onSetFilter={setFilter} />
             {isLoading && <p>Loading...</p>}

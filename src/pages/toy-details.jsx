@@ -27,7 +27,6 @@ export function ToyDetails() {
     return <section className="toy-details">
         <h1>Toy name : {toy.name}</h1>
         <h5>Price: ${toy.price}</h5>
-        <p>⛐</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptas cumque tempore, aperiam sed dolorum rem! Nemo quidem, placeat perferendis tempora aspernatur sit, explicabo veritatis corrupti perspiciatis repellat, enim quibusdam!</p>
         <Link to={`/toy/edit/${toy._id}`}>Edit</Link>
     </section>

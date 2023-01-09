@@ -10,9 +10,6 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
-
-
-
 const initialState = {
     toys: [],
     lastRemovedToy: null,
@@ -20,7 +17,6 @@ const initialState = {
     isCartShown: false,
     shoppingCart: [],
 }
-
 
 export function toyReducer(state = initialState, action) {
     let toys
