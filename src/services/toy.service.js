@@ -19,7 +19,7 @@ export const toyService = {
 
 
 function query(filterBy = getDefaultFilter()) {
-    const queryParams = `?vendor=${filterBy.txt}&maxPrice=${filterBy.maxPrice}`
+    const queryParams = `?name=${filterBy.txt}&maxPrice=${filterBy.maxPrice}`
     return httpService.get(BASE_URL + queryParams)
 }
 
@@ -28,7 +28,7 @@ function query(filterBy = getDefaultFilter()) {
 //         .then(toys => {
 //             if (filterBy.txt) {
 //                 const regex = new RegExp(filterBy.txt, 'i')
-//                 toys = toys.filter(toy => regex.test(toy.vendor))
+//                 toys = toys.filter(toy => regex.test(toy.name))
 //             }
 //             if (filterBy.maxPrice) {
 //                 toys = toys.filter(toy => toy.price <= filterBy.maxPrice)
@@ -63,19 +63,19 @@ function getDefaultFilter() {
 }
 function getEmptyToy() {
     return {
-        vendor: '',
+        name: '',
         price: 0,
     }
 }
 
 function getRandomToy() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
+        name: 'Susita-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(1000, 9000),
     }
 }
 
 // TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
+// storageService.post(STORAGE_KEY, {name: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
 
 

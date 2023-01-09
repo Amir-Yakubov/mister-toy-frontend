@@ -72,7 +72,7 @@ export function ToyIndex() {
     }
 
     function addToCart(toy) {
-        console.log(`Adding ${toy.vendor} to Cart`)
+        console.log(`Adding ${toy.name} to Cart`)
         dispatch({ type: ADD_TO_CART, toy })
         showSuccessMsg('Added to Cart')
     }

@@ -1,4 +1,4 @@
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { showSuccessMsg, /* showErrorMsg */ } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { REMOVE_FROM_CART } from '../store/toy.reducer.js'
 import { checkout } from '../store/user.action.js'
@@ -33,7 +33,7 @@ export function ShoppingCart({ cart, dispatch }) {
             {
                 cart.map((toy, idx) => <li key={idx}>
                     <button onClick={() => { removeFromCart(toy._id) }}>x</button>
-                    {toy.vendor} | ${toy.price}
+                    {toy.name} | ${toy.price}
                 </li>)
             }
         </ul>

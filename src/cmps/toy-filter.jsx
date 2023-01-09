@@ -37,11 +37,11 @@ export function ToyFilter({ onSetFilter }) {
     return <section className="toy-filter full main-layout">
         <h2>Toys Filter</h2>
         <form onSubmit={onSubmitFilter}>
-            <label htmlFor="vendor">Vendor:</label>
+            <label htmlFor="name">name:</label>
             <input type="text"
-                id="vendor"
+                id="name"
                 name="txt"
-                placeholder="By vendor"
+                placeholder="By name"
                 value={filterByToEdit.txt}
                 onChange={handleChange}
                 ref={elInputRef}
