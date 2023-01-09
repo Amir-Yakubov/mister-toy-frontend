@@ -17,11 +17,47 @@ export const toyService = {
     getDefaultFilter
 }
 
-
 function query(filterBy = getDefaultFilter()) {
     const queryParams = `?name=${filterBy.txt}&maxPrice=${filterBy.maxPrice}`
     return httpService.get(BASE_URL + queryParams)
 }
+
+function getById(toyId) {
+    return httpService.get(BASE_URL + toyId)
+    // return storageService.get(STORAGE_KEY, toyId)
+}
+
+function remove(toyId) {
+    return httpService.delete(BASE_URL + toyId)
+}
+
+function save(toy) {
+    if (toy._id) {
+        return httpService.put(BASE_URL, toy)
+    } else {
+        toy.owner = userService.getLoggedinUser()
+        return httpService.post(BASE_URL, toy)
+    }
+}
+
+function getDefaultFilter() {
+    return { txt: '', maxPrice: 0 }
+}
+function getEmptyToy() {
+    return {
+        name: '',
+        price: 0,
+        _id: ''
+    }
+}
+
+function getRandomToy() {
+    return {
+        name: 'New toy',
+        price: utilService.getRandomIntInclusive(100, 500),
+    }
+}
+
 
 // function query(filterBy = getDefaultFilter()) {
 //     return storageService.query(STORAGE_KEY)
@@ -36,46 +72,5 @@ function query(filterBy = getDefaultFilter()) {
 //             return toys
 //         })
 // }
-
-
-
-function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
-}
-
-function remove(toyId) {
-    // return Promise.reject('Not now!')
-    return httpService.delete(BASE_URL + toyId)
-}
-
-function save(toy) {
-    if (toy._id) {
-        return httpService.put(BASE_URL, toy)
-    } else {
-        // when switching to backend - remove the next line
-        toy.owner = userService.getLoggedinUser()
-        return httpService.post(BASE_URL, toy)
-    }
-}
-
-function getDefaultFilter() {
-    return { txt: '', maxPrice: 0 }
-}
-function getEmptyToy() {
-    return {
-        name: '',
-        price: 0,
-    }
-}
-
-function getRandomToy() {
-    return {
-        name: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
-}
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {name: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
 
 

@@ -1,10 +1,7 @@
-import PropTypes from 'prop-types';
-import { type } from "@testing-library/user-event/dist/type/index.js"
+import { Link } from "react-router-dom"
 import { ToyPreview } from "./toy-preview.jsx"
 
-
-export function ToyList({ toys, onRemoveToy, onEditToy, addToCart, nums }) {
-    console.log('nums:', nums)
+export function ToyList({ toys, onRemoveToy, onEditToy, addToCart }) {
     return <ul className="toy-list">
         {toys.map(toy =>
             <li className="toy-preview" key={toy._id}>
@@ -12,7 +9,9 @@ export function ToyList({ toys, onRemoveToy, onEditToy, addToCart, nums }) {
 
                 <div>
                     <button onClick={() => { onRemoveToy(toy._id) }}>x</button>
-                    <button onClick={() => { onEditToy(toy) }}>Change price</button>
+                    {/* <button onClick={() => { onEditToy(toy) }}>Change price</button> */}
+                    <Link className="toy-preview-link" to={`/toy/edit/${toy._id}`}>Edit </Link> |
+                    <Link className="toy-preview-link" to={`/toy/${toy._id}`}> Details</Link>
                 </div>
 
                 <button className="buy" onClick={() => { addToCart(toy) }}>
@@ -22,28 +21,3 @@ export function ToyList({ toys, onRemoveToy, onEditToy, addToCart, nums }) {
     </ul>
 }
 
-
-ToyList.propTypes = {
-    txt(props, propName, cmp) {
-        if (typeof props.txt !== 'string') {
-            return new Error('Txt Not a String!')
-        }
-    },
-    nums: PropTypes.array,
-    // toys() {
-
-    // }
-}
-
-const obg = {
-    a:1,
-    func() {
-
-    },
-
-}
-
-
-// ToyList.defaultProps = {
-//     nums: [1, 2, 3 ,4]
-// }

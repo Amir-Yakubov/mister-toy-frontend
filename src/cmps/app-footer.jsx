@@ -12,7 +12,6 @@ export function AppFooter() {
     const isCartShown = useSelector((storeState) => storeState.toyModule.isCartShown)
     const toysCount = useSelector((storeState) => storeState.toyModule.toys.length)
     const cart = useSelector((storeState) => storeState.toyModule.shoppingCart)
-    console.log('cart', cart);
     const dispatch = useDispatch()
 
     // TODO: move to storeState

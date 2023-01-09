@@ -9,7 +9,7 @@ import { loadToys, removeToy, saveToy } from '../store/toy.action.js'
 import { ADD_TO_CART } from '../store/toy.reducer.js'
 import { useEffect } from 'react'
 
-import { PopupMenu } from '../cmps/popup-menu.jsx'
+// import { PopupMenu } from '../cmps/popup-menu.jsx'
 
 export function ToyIndex() {
 
@@ -96,11 +96,9 @@ export function ToyIndex() {
                 onRemoveToy={onRemoveToy}
                 onEditToy={onEditToy}
                 addToCart={addToCart}
-                nums={[7, 8]}
-                txt={'77'}
             />
             <hr />
-            <pre>{JSON.stringify(shoppingCart, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(shoppingCart, null, 2)}</pre> */}
         </main>
     </section>
 

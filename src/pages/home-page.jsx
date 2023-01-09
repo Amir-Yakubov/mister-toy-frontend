@@ -1,6 +1,3 @@
-// const { useState, useEffect } = React
-// const { useSelector, useDispatch } = ReactRedux
-// import logoUrl from '../assets/img/logo.png'
 
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"

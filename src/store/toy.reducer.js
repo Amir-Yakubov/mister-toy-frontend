@@ -1,5 +1,8 @@
+import { toyService } from "../services/toy.service"
 
 export const SET_TOYS = 'SET_TOYS'
+export const SET_TOY = 'SET_TOY'
+export const RESET_TOY = 'RESET_TOY'
 export const REMOVE_TOY = 'REMOVE_TOY'
 export const UNDO_REMOVE_TOY = 'UNDO_REMOVE_TOY'
 export const ADD_TOY = 'ADD_TOY'
@@ -12,6 +15,7 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
     toys: [],
+    toy: toyService.getEmptyToy(),
     lastRemovedToy: null,
     isLoading: false,
     isCartShown: false,
@@ -20,12 +24,20 @@ const initialState = {
 
 export function toyReducer(state = initialState, action) {
     let toys
+    let toy
     let shoppingCart
     let lastRemovedToy
 
     switch (action.type) {
         case SET_TOYS:
             return { ...state, toys: action.toys }
+
+        case SET_TOY:
+            return { ...state, toy: action.toy }
+
+        case RESET_TOY:
+            return { ...state, toy: toyService.getEmptyToy() }
+
         case SET_IS_LOADING:
             return { ...state, isLoading: action.isLoading }
 
@@ -42,6 +54,7 @@ export function toyReducer(state = initialState, action) {
         case ADD_TOY:
             toys = [...state.toys, action.toy]
             return { ...state, toys }
+
         case UPDATE_TOY:
             toys = state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
             return { ...state, toys }

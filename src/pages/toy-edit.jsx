@@ -1,73 +1,69 @@
-const { useState, useEffect } = React
-const { useNavigate, useParams, Link } = ReactRouterDOM
 
-import { toyService } from "../services/toy.service.js"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { toyService } from '../services/toy.service.js'
+import { store } from '../store/store.js'
+import { loadToy, saveToy, resetToy } from '../store/toy.action.js'
+import { SET_TOY } from '../store/toy.reducer.js'
 
 export function ToyEdit() {
-    const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { toyId } = useParams()
 
+    let toy = useSelector((storeState) => storeState.toyModule.toy)
+
     useEffect(() => {
-        if (!toyId) return
-        loadToy()
+        onLoadToy()
     }, [])
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then((toy) => setToyToEdit(toy))
-            .catch((err) => {
-                console.log('Had issues in toy details', err)
-                navigate('/toy')
+    function onLoadToy() {
+        if (!toyId) return
+        loadToy(toyId)
+            .then((toy) => {
+                showSuccessMsg(`${toy.name} loaded`)
+            })
+            .catch(err => {
+                showErrorMsg('Cannot load toy', err)
             })
     }
 
     function handleChange({ target }) {
         let { value, type, name: field } = target
         value = type === 'number' ? +value : value
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
+        toy = { ...toy, [field]: value }
+        dispatch({ type: SET_TOY, toy })
     }
 
     function onSaveToy(ev) {
         ev.preventDefault()
-        toyService.save(toyToEdit)
-            .then((toy) => {
-                console.log('toy saved', toy);
-                showSuccessMsg('Toy saved!')
-                navigate('/toy')
-            })
-            .catch(err => {
-                console.log('err', err)
-                showErrorMsg('Cannot save toy')
-            })
+        saveToy(toy).then(() => {
+            resetToy()
+            navigate('/toy')
+        })
     }
 
-    return <section className="toy-edit">
-        <h2>{toyToEdit.id ? 'Edit this toy' : 'Add a new toy'}</h2>
+    return (
+        <section className="toy-edit">
+            <h2>{toy._id ? 'Edit this toy' : 'Add a new toy'}</h2>
 
-        <form onSubmit={onSaveToy}>
-            <label htmlFor="name">name : </label>
-            <input type="text"
-                name="name"
-                id="name"
-                placeholder="Enter name..."
-                value={toyToEdit.name}
-                onChange={handleChange}
-            />
-            <label htmlFor="price">Price : </label>
-            <input type="number"
-                name="price"
-                id="price"
-                placeholder="Enter price"
-                value={toyToEdit.price}
-                onChange={handleChange}
-            />
-
-            <div>
-                <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
-                <Link to="/toy">Cancel</Link>
-            </div>
-        </form>
-    </section>
+            <form onSubmit={onSaveToy}>
+                <label htmlFor="name">Name </label>
+                <input type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Enter name..."
+                    value={toy.name}
+                    onChange={handleChange}
+                />
+                <div>
+                    <button>{toy._id ? 'Save' : 'Add'}</button>
+                    {/* <Link to="/toy" >Cancel</Link> */}
+                    <button onClick={resetToy} to="/toy" >Cancel</button>
+                </div>
+            </form>
+        </section>
+    )
 }
