@@ -14,9 +14,9 @@ export function ToyList({ toys, onRemoveToy, onEditToy, addToCart }) {
                     <Link className="toy-preview-link" to={`/toy/${toy._id}`}> Details</Link>
                 </div>
 
-                <button className="buy" onClick={() => { addToCart(toy) }}>
+                {/* <button className="buy" onClick={() => { addToCart(toy) }}>
                     Add to Cart
-                </button>
+                </button> */}
             </li>)}
     </ul>
 }

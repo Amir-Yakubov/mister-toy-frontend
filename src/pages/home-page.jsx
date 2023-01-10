@@ -1,6 +1,7 @@
 
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { loadToys } from "../store/toy.action.js"
 
 export function HomePage() {
@@ -18,15 +19,16 @@ export function HomePage() {
         dispatch({ type: 'CHANGE_BY', diff })
     }
 
-    const imgUrl = 'logo.png'
+    const imgUrl = 'hero.png'
     return (
         <section>
-            <h2>
+            {/* <h2>
                 Count {count}
                 <button onClick={() => { changeCount(1) }}>+</button>
                 <button onClick={() => { changeCount(10) }}>+10</button>
-            </h2 >
+            </h2 > */}
             <img src={require(`../assets/img/${imgUrl}`)} />
+            <Link className="enter-shop" to={`/toy/`}>SHOP NOW!</Link>
         </section >
     )
 

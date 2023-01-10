@@ -87,7 +87,7 @@ export function ToyIndex() {
                 <Text/>
             </PopupMenu> */}
             <Link to={`/toy/edit`}>Add Toy</Link>
-            <button onClick={onAddToy}>Add random Toy</button>
+            {/* <button onClick={onAddToy}>Add random Toy</button> */}
 
             <ToyFilter onSetFilter={setFilter} />
             {isLoading && <p>Loading...</p>}

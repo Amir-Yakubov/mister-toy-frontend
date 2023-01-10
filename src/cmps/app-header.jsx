@@ -36,26 +36,27 @@ export function AppHeader() {
     }
 
     return (
-        <header className="app-header">
+        <header className="app-header flex align-center">
+            <h1>TEDS SHOP</h1>
             <nav>
                 <NavLink to="/">Home</NavLink> |
-                <NavLink to="/toy">Toys</NavLink> |
-                <NavLink to="/about">About</NavLink> |
-                <a href="#" onClick={onToggleCart}>
+                <NavLink to="/toy"> Toys</NavLink> |
+                <NavLink to="/about"> About</NavLink>
+
+                {/* <a href="#" onClick={onToggleCart}>
                     🛒 Cart
-                </a>
+                </a> */}
             </nav>
 
-            <h1>My App</h1>
 
-            {user && <section className="user-info">
+            {/* {user && <section className="user-info">
                 <p>{user.fullname} <span>${user.score.toLocaleString()}</span></p>
                 <button onClick={onLogout}>Logout</button>
             </section>}
 
             {!user && <section className="user-info">
                 <LoginSignup setUser={setUser} />
-            </section>}
+            </section>} */}
 
         </header>
     )

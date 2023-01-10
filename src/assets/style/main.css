@@ -18,6 +18,7 @@
 @import "cmps/toy-preview.css";
 
 @import "cmps/shopping-cart.css";
+@import "cmps/home-page.css";
 
 .popup-menu {
     width: 300px;
