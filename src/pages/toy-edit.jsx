@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { MyForm } from '../cmps/my-form.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { toyService } from '../services/toy.service.js'
 import { store } from '../store/store.js'
@@ -48,6 +49,8 @@ export function ToyEdit() {
     return (
         <section className="toy-edit">
             <h2>{toy._id ? 'Edit this toy' : 'Add a new toy'}</h2>
+
+            {/* <MyForm /> */}
 
             <form onSubmit={onSaveToy}>
                 <label htmlFor="name">Name </label>

@@ -13,6 +13,7 @@ import { AppFooter } from './cmps/app-footer';
 import { ToyIndex } from './pages/toy-index';
 import { ToyEdit } from './pages/toy-edit';
 import { ToyDetalis } from './pages/toy-details';
+import { Dashboard } from './pages/dashboard';
 
 
 
@@ -33,6 +34,7 @@ export function App() {
                             <Route element={<ToyEdit />} path="/toy/edit" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<ToyDetalis />} path="/toy/:toyId" />
+                            <Route element={<Dashboard />} path="/dashboard" />
                         </Routes>
                     </main>
                     <AppFooter />

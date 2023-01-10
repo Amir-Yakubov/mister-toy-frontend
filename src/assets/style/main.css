@@ -20,6 +20,7 @@
 @import "cmps/shopping-cart.css";
 @import "cmps/home-page.css";
 @import "cmps/toy-index.css";
+@import "cmps/dashboard.css";
 
 .popup-menu {
     width: 300px;
