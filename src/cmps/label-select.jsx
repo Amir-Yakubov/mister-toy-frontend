@@ -29,7 +29,7 @@ export function LabelSelect({ onLabelChange }) {
         <div className="select-wrap">
             <h3 className="labels-label">Labels</h3>
             <Select
-                // defaultValue={ }
+                defaultValue={''}
                 isMulti
                 name="colors"
                 options={colourOptions}

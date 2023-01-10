@@ -41,7 +41,7 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: 0 }
+    return { txt: '', maxPrice: 0, labels: [] }
 }
 function getEmptyToy() {
     return {
