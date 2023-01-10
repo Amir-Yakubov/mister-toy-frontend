@@ -22,7 +22,9 @@ export function App() {
         <Provider store={store}>
             <Router>
                 <section className="main-layout app">
-                    <AppHeader />
+                    <div className="header-wrap">
+                        <AppHeader />
+                    </div>
                     <main className="main-container">
                         <Routes>
                             <Route element={<HomePage />} path="/" />
