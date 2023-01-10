@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react"
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
+import { LabelSelect } from "./label-select.jsx"
 
 
 export function ToyFilter({ onSetFilter }) {
@@ -33,11 +34,19 @@ export function ToyFilter({ onSetFilter }) {
         onSetFilter(filterByToEdit)
     }
 
+    function onLabelChange(selectedLabels) {
+        console.log('filterByToEdit', filterByToEdit)
+        setFilterByToEdit((prevFilter) => ({
+            ...prevFilter,
+            labels: selectedLabels,
+        }))
+    }
+
 
     return <section className="toy-filter full main-layout">
-        <h2>Toys Filter</h2>
         <form onSubmit={onSubmitFilter}>
-            <label htmlFor="name">name:</label>
+            <h2>Toys Filter</h2>
+            <label htmlFor="name">name</label>
             <input type="text"
                 id="name"
                 name="txt"
@@ -47,7 +56,7 @@ export function ToyFilter({ onSetFilter }) {
                 ref={elInputRef}
             />
 
-            <label htmlFor="maxPrice">Max price:</label>
+            <label htmlFor="maxPrice">Max price</label>
             <input type="number"
                 id="maxPrice"
                 name="maxPrice"
@@ -55,6 +64,8 @@ export function ToyFilter({ onSetFilter }) {
                 value={filterByToEdit.maxPrice}
                 onChange={handleChange}
             />
+
+            <LabelSelect onLabelChange={onLabelChange} />
 
             <button hidden>Filter</button>
         </form>

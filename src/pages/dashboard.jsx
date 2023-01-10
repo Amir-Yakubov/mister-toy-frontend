@@ -1,5 +1,5 @@
 import { LabelChart } from "../cmps/label-chart";
-import { LabelSelect } from "../cmps/label-select";
+// import { LabelSelect } from "../cmps/label-select";
 import { PriceChart } from "../cmps/price-chart";
 
 export function Dashboard() {
@@ -9,7 +9,7 @@ export function Dashboard() {
             <PriceChart />
             <h3 className="chart-title">Label chart</h3>
             <LabelChart />
-            <LabelSelect />
+            {/* <LabelSelect /> */}
         </section>
     )
 }

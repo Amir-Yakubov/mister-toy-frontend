@@ -18,7 +18,7 @@ export const toyService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-    const queryParams = `?name=${filterBy.txt}&maxPrice=${filterBy.maxPrice}`
+    const queryParams = `?name=${filterBy.txt}&maxPrice=${filterBy.maxPrice}&labels=${filterBy.labels}`
     return httpService.get(BASE_URL + queryParams)
 }
 

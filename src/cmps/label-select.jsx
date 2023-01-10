@@ -1,94 +1,42 @@
-// import React, { MouseEventHandler } from 'react';
+import React from 'react'
 
-// import Select, {
-//     components,
-//     MultiValueGenericProps,
-//     MultiValueProps,
-//     OnChangeValue,
-//     Props,
-// } from 'react-select';
+import Select from 'react-select'
 
-// import {
-//     SortableContainer,
-//     SortableContainerProps,
-//     SortableElement,
-//     SortEndHandler,
-//     SortableHandle,
-// } from 'react-sortable-hoc';
 
-// import { ColourOption, colourOptions } from '../data';
+export function LabelSelect({ onLabelChange }) {
 
-// function arrayMove<T>(array: readonly T[], from: number, to: number) {
-//     const slicedArray = array.slice();
-//     slicedArray.splice(
-//         to < 0 ? array.length + to : to,
-//         0,
-//         slicedArray.splice(from, 1)[0]
-//     );
-//     return slicedArray;
-// }
+    const colourOptions = [
+        { value: 'Doll', label: 'Doll', isFixed: true },
+        { value: 'Battery Powered', label: 'Battery Powered' },
+        { value: 'Baby', label: 'Baby' },
+        { value: 'outdoor', label: 'outdoor' },
+        { value: 'On wheels', label: 'On wheels' },
+        { value: 'Box game', label: 'Box game' },
+        { value: 'Thinking game', label: 'Thinking game' }
+    ]
 
-// const SortableMultiValue = SortableElement(
-//     (props: MultiValueProps<ColourOption>) => {
-//         // this prevents the menu from being opened/closed when the user clicks
-//         // on a value to begin dragging it. ideally, detecting a click (instead of
-//         // a drag) would still focus the control and toggle the menu, but that
-//         // requires some magic with refs that are out of scope for this example
-//         const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
-//             e.preventDefault();
-//             e.stopPropagation();
-//         };
-//         const innerProps = { ...props.innerProps, onMouseDown };
-//         return <components.MultiValue {...props} innerProps={innerProps} />;
-//     }
-// );
 
-// const SortableMultiValueLabel = SortableHandle(
-//     (props: MultiValueGenericProps) => <components.MultiValueLabel {...props} />
-// );
+    function handleChange(...props) {
+        // let { value, name: field, type } = target
+        console.log('props', props)
+        console.log('value', props[0])
+        const labels = props[0].map((labelInfo) => labelInfo.value)
+        console.log('labels', labels)
+        onLabelChange(labels)
+    }
 
-// const SortableSelect = SortableContainer(Select) as React.ComponentClass<
-//     Props<ColourOption, true> & SortableContainerProps
-// >;
-
-// export default function MultiSelectSort() {
-//     const [selected, setSelected] = React.useState < readonly ColourOption[]> ([
-//         colourOptions[4],
-//         colourOptions[5],
-//     ]);
-
-//     const onChange = (selectedOptions: OnChangeValue<ColourOption, true>) =>
-//         setSelected(selectedOptions);
-
-//     const onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
-//         const newValue = arrayMove(selected, oldIndex, newIndex);
-//         setSelected(newValue);
-//         console.log(
-//             'Values sorted:',
-//             newValue.map((i) => i.value)
-//         );
-//     };
-
-//     return (
-//         <SortableSelect
-//             useDragHandle
-//             // react-sortable-hoc props:
-//             axis="xy"
-//             onSortEnd={onSortEnd}
-//             distance={4}
-//             // small fix for https://github.com/clauderic/react-sortable-hoc/pull/352:
-//             getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-//             // react-select props:
-//             isMulti
-//             options={colourOptions}
-//             value={selected}
-//             onChange={onChange}
-//             components={{
-//                 // @ts-ignore We're failing to provide a required index prop to SortableElement
-//                 MultiValue: SortableMultiValue,
-//                 MultiValueLabel: SortableMultiValueLabel,
-//             }}
-//             closeMenuOnSelect={false}
-//         />
-//     );
-// }
+    return (
+        <div className="select-wrap">
+            <h3 className="labels-label">Labels</h3>
+            <Select
+                // defaultValue={ }
+                isMulti
+                name="colors"
+                options={colourOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                onChange={handleChange}
+            />
+        </div>
+    )
+}
