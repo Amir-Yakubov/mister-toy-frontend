@@ -79,18 +79,18 @@ export function ToyIndex() {
     }
 
     return <section>
-        <h3>Toys App</h3>
+        <h3 className='main-app-title'>TEDS Toys shop</h3>
         <main>
             {/* <PopupMenu top={<h2>Popup in Toy Index</h2>}>
                 <Text/>
                 <Text/>
                 <Text/>
             </PopupMenu> */}
-            <Link to={`/toy/edit`}>Add Toy</Link>
             {/* <button onClick={onAddToy}>Add random Toy</button> */}
 
             <ToyFilter onSetFilter={setFilter} />
             {isLoading && <p>Loading...</p>}
+            <button><Link to={`/toy/edit`}>Add Toy</Link></button>
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}

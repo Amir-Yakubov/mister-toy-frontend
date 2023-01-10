@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { toyService } from '../services/toy.service.js'
 import { store } from '../store/store.js'
@@ -60,8 +60,7 @@ export function ToyEdit() {
                 />
                 <div>
                     <button>{toy._id ? 'Save' : 'Add'}</button>
-                    {/* <Link to="/toy" >Cancel</Link> */}
-                    <button onClick={resetToy} to="/toy" >Cancel</button>
+                    <button onClick={() => resetToy()}><Link to="/toy" >Cancel</Link></button>
                 </div>
             </form>
         </section>

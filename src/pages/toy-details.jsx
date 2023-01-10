@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadToy, saveToy } from '../store/toy.action.js'
 import { toyService } from '../services/toy.service.js'
-import { SET_TOY } from '../store/toy.reducer.js'
+import { RESET_TOY, SET_TOY } from '../store/toy.reducer.js'
 import { useEffect, useState } from 'react'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
@@ -29,8 +29,7 @@ export function ToyDetalis() {
     }
 
     function resetToy() {
-        const reset = toyService.getEmptyToy()
-        dispatch({ type: SET_TOY, reset })
+        dispatch({ type: RESET_TOY})
         navigate('/toy')
     }
 
